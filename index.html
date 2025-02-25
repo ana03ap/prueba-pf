@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebXR AR Demo</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@webxr-polyfill/webxr-polyfill@latest/build/webxr-polyfill.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/jsm/webxr/XRButton.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/jsm/webxr/XRControllerModelFactory.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/jsm/webxr/XRHandModelFactory.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Ejecuta WebXR AR</h1>
+    <button id="startButton">Iniciar AR</button>
+    <script>
+        document.getElementById("startButton").addEventListener("click", function() {
+            if (navigator.xr) {
+                navigator.xr.requestSession('immersive-ar', { requiredFeatures: ['hit-test'] }).then(session => {
+                    console.log("WebXR AR session started");
+                }).catch(err => console.log("Error al iniciar WebXR: ", err));
+            } else {
+                alert("WebXR no es compatible en este navegador");
+            }
+        });
+    </script>
+</body>
+</html>
