@@ -24,7 +24,19 @@
             renderer.xr.enabled = true;
             document.body.appendChild(renderer.domElement);
             
-            document.body.appendChild(THREE.XRButton.createButton(renderer));
+            const xrButton = document.createElement("button");
+            xrButton.innerText = "Iniciar WebXR";
+            xrButton.style.position = "absolute";
+            xrButton.style.top = "10px";
+            xrButton.style.left = "10px";
+            xrButton.onclick = () => {
+                navigator.xr.requestSession("immersive-ar", { requiredFeatures: ["hit-test"] }).then(session => {
+                    renderer.xr.setSession(session);
+                }).catch(err => {
+                    alert("Error al iniciar WebXR: " + err.message);
+                });
+            };
+            document.body.appendChild(xrButton);
 
             // Crear cubo
             const geometry = new THREE.BoxGeometry(0.2, 0.2, 0.2);
@@ -54,7 +66,6 @@
                     return;
                 }
                 
-                const session = await navigator.xr.requestSession('immersive-ar', { requiredFeatures: ['hit-test'] });
                 init();
             } catch (err) {
                 alert("⚠️ Error al iniciar WebXR: " + err.message + "\n\nAsegúrate de que tu navegador y dispositivo soporten WebXR y ARCore.");
@@ -63,4 +74,3 @@
     </script>
 </body>
 </html>
-
