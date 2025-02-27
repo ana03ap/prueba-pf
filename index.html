@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AR Demo</title>
-    <meta name="description" content="ar-demo">
+    <title>AR Esfera y Modelo 3D</title>
     
     <!-- A-Frame actualizado -->
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
@@ -13,13 +12,20 @@
     <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js@latest/aframe/build/aframe-ar.min.js"></script>
 </head>
 <body style="margin: 0; overflow: hidden;">
-    <!-- Escena con AR -->
-    <a-scene embedded arjs>
-        <!-- Entidad principal -->
-        <a-entity scale="2 2 2">
-            <!-- Modelo 3D en formato GLTF -->
-            <a-entity gltf-model="assets/ELMSlogo3.gltf" scale="1 1 1"></a-entity>
-        </a-entity>
+    <!-- Configuración de la escena con AR.js -->
+    <a-scene embedded arjs="sourceType: webcam;">
+        
+        <!-- Marcador Hiro -->
+        <a-marker preset="hiro">
+            <!-- Esfera roja sobre el marcador -->
+            <a-sphere position="0 0.5 0" radius="0.3" color="red"></a-sphere>
+            
+            <!-- Modelo 3D GLTF sobre el marcador -->
+            <a-entity gltf-model="assets/ELMSlogo3.gltf" scale="1 1 1" position="0 0 0"></a-entity>
+        </a-marker>
+
+        <!-- Cámara AR -->
+        <a-entity camera></a-entity>
     </a-scene>
 </body>
 </html>
