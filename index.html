@@ -1,30 +1,24 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AR Esfera y Modelo 3D</title>
-    
-    <!-- A-Frame actualizado -->
-    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
-    
-    <!-- AR.js actualizado -->
-    <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js@latest/aframe/build/aframe-ar.min.js"></script>
+    <title>AR.js con marcador Hiro</title>
+    <!-- Importar A-Frame -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aframe/1.4.2/aframe.min.js"></script>
+    <!-- Importar AR.js con soporte A-Frame -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/AR.js/2.4.0/aframe-ar.js"></script>
 </head>
-<body style="margin: 0; overflow: hidden;">
-    <!-- Configuración de la escena con AR.js -->
-    <a-scene embedded arjs="sourceType: webcam;">
-        
-        <!-- Marcador Hiro -->
-        <a-marker preset="hiro">
-            <!-- Esfera roja sobre el marcador -->
-            <a-sphere position="0 0.5 0" radius="0.3" color="red"></a-sphere>
-            
-            <!-- Modelo 3D GLTF sobre el marcador -->
-            <a-entity gltf-model="assets/ELMSlogo3.gltf" scale="1 1 1" position="0 0 0"></a-entity>
-        </a-marker>
 
-        <!-- Cámara AR -->
+<body style="margin: 0; overflow: hidden;">
+    <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
+        <!-- Definir el marcador -->
+        <a-marker preset="hiro">
+            <!-- Añadir un cubo rojo encima del marcador -->
+            <a-box position="0 0.5 0" material="color: red;" scale="0.5 0.5 0.5" animation="property: rotation; to: 0 360 0; loop: true; dur: 3000; easing: linear"></a-box>
+        </a-marker>
+        
+        <!-- Añadir una cámara -->
         <a-entity camera></a-entity>
     </a-scene>
 </body>
