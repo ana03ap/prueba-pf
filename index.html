@@ -4,19 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AR Esfera con Hiro</title>
+    
+    <!-- Importar A-Frame -->
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
-    <script src="https://rawgit.com/jeromeetienne/AR.js/1.7.2/aframe/build/aframe-ar.min.js"></script>
+
+    <!-- Importar AR.js (versión más estable y actualizada) -->
+    <script src="https://cdn.jsdelivr.net/npm/ar.js@1.7.2/aframe/build/aframe-ar.min.js"></script>
+
+    <!-- Estilos para pantalla completa sin márgenes -->
+    <style>
+        body { margin: 0; overflow: hidden; }
+    </style>
 </head>
-<body style="margin: 0; overflow: hidden;">
-    <!-- Configuración de la escena con AR.js -->
+<body>
+
+    <!-- Configuración de la escena AR -->
     <a-scene embedded arjs>
-        <!-- Marcador Hiro -->
+        <!-- Marcador Hiro (patrón predefinido de AR.js) -->
         <a-marker preset="hiro">
-            <!-- Esfera sobre el marcador -->
+            <!-- Esfera roja flotante sobre el marcador -->
             <a-sphere position="0 0.5 0" radius="0.3" color="red"></a-sphere>
         </a-marker>
-        <!-- Cámara AR -->
+
+        <!-- Cámara para la detección del marcador -->
         <a-entity camera></a-entity>
     </a-scene>
+
 </body>
 </html>
